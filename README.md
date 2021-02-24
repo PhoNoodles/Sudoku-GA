@@ -4,10 +4,10 @@ This is a collaborate AI project. We will be comparing AOC to GA algorithms for 
 This is a group project for a psu CS441 course.
 
 to get code locally:
-git clone https://github.com/PhoNoodles/Sudoku-AOCGA.git
+git clone https://github.com/PhoNoodles/Sudoku-AOC-GA.git
 set your git remote:
 git init 
-git remote set-url origin https://github.com/PhoNoodles/Sudoku-AOCGA.git
+git remote set-url origin https://github.com/PhoNoodles/Sudoku-AOC-GA.git
 to create your own branch:
 git checkout -b <branch-name> 
 to add / commit changes:
