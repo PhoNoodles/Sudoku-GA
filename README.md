@@ -1,4 +1,4 @@
-# Sudoku-AOCGA
+# Sudoku-AOC-GA
 This is a collaborate AI project. We will be comparing AOC to GA algorithms for solving sudoku
 
 This is a group project for a psu CS441 course.
