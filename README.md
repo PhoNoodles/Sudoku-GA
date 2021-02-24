@@ -6,14 +6,14 @@ This is a group project for a psu CS441 course.
 ### to get code locally: 
 
 ```bash
-git clone https://github.com/PhoNoodles/Sudoku-AOCGA.git
+git clone https://github.com/PhoNoodles/Sudoku-AOC-GA.git
 ```
 
 ### set your git remote:
 
 ```bash
 git init 
-git remote set-url origin https://github.com/PhoNoodles/Sudoku-AOCGA.git
+git remote set-url origin https://github.com/PhoNoodles/Sudoku-AOC-GA.git
 ```
 
 ### to create your own branch:
