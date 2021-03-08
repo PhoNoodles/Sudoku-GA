@@ -6,7 +6,7 @@ This is a group project for a psu CS441 course.
 ### to get code locally: 
 
 ```bash
-git clone https://github.com/PhoNoodles/Sudoku-AOC-GA.git
+git clone https://github.com/PhoNoodles/Sudoku-GA.git
 ```
 
 ### set your git remote:
