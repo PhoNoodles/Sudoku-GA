@@ -1,7 +1,11 @@
-#include "header.h"
+#include "chromosome.h"
+#include "population.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
 int main()
 {
-	cout << "Hello World" << endl;
-	cout << "Rio's branch" << endl;
-	return 0;
+
+    return 0;
 }
