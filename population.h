@@ -17,11 +17,11 @@ class Population
         bool checkSolved();
         int chooseParent();
         int breed(const int parent1, const int parent2);
-        int solve();
+        int solve(vector<vector<int>> initial);
         void printPopulation();
 
     private:
-        vector<vector<Chromosome*>> population;
+        vector<Chromosome*> population;
         int generations;
         
 };
