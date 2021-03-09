@@ -1,6 +1,7 @@
 #ifndef CHROMOSOME_H
 #define CHROMOSOME_H
 
+#include <vector>
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -12,13 +13,13 @@ class Chromosome
 {
     public:
         Chromosome();
-        Chromosome(string newState);
-        string makeState();
+        Chromosome(vector<vector<int>> newState);
+        vector<vector<int>> makeState();
         int fitnessEval();
         void printState();
 
     private:
-        string state;
+        vector<vector<int>> state;
         int fitness_score;
 };
 
