@@ -4,6 +4,11 @@
 #include <string>
 #include <vector>
 
+void testing()
+{
+    cout << "testing" << endl;
+}
+
 int main()
 {
  //  cout << "hello world" << endl;
