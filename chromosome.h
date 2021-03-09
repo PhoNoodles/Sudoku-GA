@@ -13,13 +13,13 @@ class Chromosome
 {
     public:
         Chromosome();
-        Chromosome(vector<vector<int>> newState);
-        vector<vector<int>> makeState();
+        Chromosome(string newState);
+        string makeState();
         int fitnessEval();
         void printState();
 
     private:
-        vector<vector<int>> state;
+        string state;
         int fitness_score;
 };
 
