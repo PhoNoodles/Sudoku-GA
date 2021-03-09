@@ -6,8 +6,14 @@
 
 int main()
 {
-
+    int michael=100;
     cout << "helloooo" << endl;
-    cout << "you fat" << endl;
+    cout<<youFat(michael);
     return 0;
+}
+
+int youFat(int michael)
+{
+	cout<<"michael is fat";
+	return 100;
 }
