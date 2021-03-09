@@ -3,10 +3,17 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
+void testing()
+{
+    cout << "testing" << endl;
+}
+
 int x ()
 {
 	cout << endl;
 }
+
 int main()
 {
  //  cout << "hello world" << endl;
