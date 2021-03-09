@@ -6,6 +6,7 @@
 
 int main()
 {
+ //  cout << "hello world" << endl;
 
     cout << "helloooo" << endl;
     cout << "you fat" << endl;
