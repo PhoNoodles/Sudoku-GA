@@ -1,25 +1,19 @@
 #include "population.h"
 #include "chromosome.h"
 
-Chromosome::Chromosome()
+Chromosome::Chromosome(const int initial_state[ROW][COL])
 {
-	state = makeState();
+	fillBoard();//fill up the rest of the board
 	fitness_score = fitnessEval();
 }
-
-Chromosome::Chromosome(string newState)
-{
-	state = newState;
-	fitness_score = fitnessEval();
-}
-
 void Chromosome::printState()
 {
-	cout << state << endl;
+
 }
 
-string Chromosome::makeState()
+void Chromosome::fillBoard()
 {
+
 	string temp;
 	int digit;
 	srand(time(NULL));

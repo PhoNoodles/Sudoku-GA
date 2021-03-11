@@ -9,17 +9,18 @@
 
 using namespace std;
 
+const int ROW = 9;
+const int COL = 9;
+
 class Chromosome
 {
     public:
-        Chromosome();
-        Chromosome(string newState);
-        string makeState();
+        Chromosome(const int initial_state[ROW][COL]);
+        void fillBoard();
         int fitnessEval();
         void printState();
 
-    private:
-        string state;
+        int board[ROW][COL];
         int fitness_score;
 };
 
