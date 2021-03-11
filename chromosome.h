@@ -13,13 +13,13 @@ class Chromosome
 {
     public:
         Chromosome();
-        Chromosome(string newState);
-        string makeState();
+        void fillBoard();
+        void readIn();
         int fitnessEval();
         void printState();
 
     private:
-        string state;
+        int board[9][9];
         int fitness_score;
 };
 

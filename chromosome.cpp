@@ -3,34 +3,21 @@
 
 Chromosome::Chromosome()
 {
-	state = makeState();
+	readIn();//read in from file
+	fillBoard();//fill up the rest of the board
 	fitness_score = fitnessEval();
 }
-
-Chromosome::Chromosome(string newState)
-{
-	state = newState;
-	fitness_score = fitnessEval();
-}
-
 void Chromosome::printState()
 {
-	cout << state << endl;
+
 }
 
-string Chromosome::makeState()
+void Chromosome::readIn()
 {
-	string temp;
-	int digit;
-	srand(time(NULL));
-	
-	for(int i = 0; i<8; ++i)
-	{
-		digit = rand () %9+1;
-		temp += to_string(digit);
-	}
-	
-	return temp;
+
+}
+void Chromosome::fillBoard()
+{
 }
 
 int Chromosome::fitnessEval()
