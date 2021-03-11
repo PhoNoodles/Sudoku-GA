@@ -23,8 +23,7 @@ Population::~Population()
 
 bool compare(const Chromosome* arg1, const Chromosome* arg2)
 {
-    //  Need function that gets fitness score
-    //return arg1->fitness_score > arg2->fitness_score;
+    return arg1->fitness_score > arg2->fitness_score;
 }
 
 int Population::solve(vector<vector<int>> initial)

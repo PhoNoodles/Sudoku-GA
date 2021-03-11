@@ -22,11 +22,11 @@ void readIn(char *file_name, int initial_state[ROW][COL])
                 }
             }
         }
+        
+        in_file.close();
     }
     else
         cout << "Failed to open file. " << endl;
-
-    in_file.close();
 }
 
 int main(int argc, char *argv[])
