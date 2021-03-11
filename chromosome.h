@@ -20,7 +20,6 @@ class Chromosome
         int fitnessEval();
         void printState();
 
-    private:
         int board[ROW][COL];
         int fitness_score;
 };
