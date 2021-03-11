@@ -4,11 +4,11 @@
 const int POP_SIZE = 500;
 const int GEN_SIZE = 1000;
 
-Population::Population()
+Population::Population(const int initial_state[ROW][COL])
 {
 	for(int i=0;i<POP_SIZE;++i)
 	{
-		Chromosome * temp = new Chromosome();
+		//Chromosome * temp = new Chromosome();
 		population.clear();
 	}
 	generations=0;

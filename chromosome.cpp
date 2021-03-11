@@ -1,7 +1,7 @@
 #include "population.h"
 #include "chromosome.h"
 
-Chromosome::Chromosome()
+Chromosome::Chromosome(const int initial_state[ROW][COL])
 {
 	fillBoard();//fill up the rest of the board
 	fitness_score = fitnessEval();

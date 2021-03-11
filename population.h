@@ -12,7 +12,7 @@ using namespace std;
 class Population
 {
     public:
-        Population();
+        Population(const int initial_state[ROW][COL]);
         ~Population();
 
         bool checkSolved();

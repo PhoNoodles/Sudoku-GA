@@ -7,16 +7,16 @@
 #include <vector>
 #include <stdlib.h>
 
-void readIn(char *file_name, int initial_state[9][9])
+void readIn(char *file_name, int initial_state[ROW][COL])
 {
     ifstream in_file(file_name);
     if(in_file.is_open() && in_file.good())
     {
         while(!in_file.eof())
         {
-            for(int i = 0; i < 9; ++i)
+            for(int i = 0; i < ROW; ++i)
             {
-                for(int j = 0; j < 9; ++j)
+                for(int j = 0; j < COL; ++j)
                 {
                     in_file >> initial_state[i][j]; 
                 }
@@ -31,7 +31,7 @@ void readIn(char *file_name, int initial_state[9][9])
 
 int main(int argc, char *argv[])
 {
-    int initial_state[9][9];
+    int initial_state[ROW][COL];
     if(argc > 1)
     {
         readIn(argv[1], initial_state);
@@ -43,9 +43,9 @@ int main(int argc, char *argv[])
     }
 
     //  Test: Displays intial sudoku state
-    for(int i = 0; i < 9; ++i)
+    for(int i = 0; i < ROW; ++i)
     {
-        for(int j = 0; j < 9; ++j)
+        for(int j = 0; j < COL; ++j)
         {
             cout << initial_state[i][j];
         }
