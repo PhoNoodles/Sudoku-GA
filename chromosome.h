@@ -14,7 +14,6 @@ class Chromosome
     public:
         Chromosome();
         void fillBoard();
-        void readIn();
         int fitnessEval();
         void printState();
 
