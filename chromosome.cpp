@@ -13,6 +13,7 @@ void Chromosome::printState()
 
 void Chromosome::fillBoard()
 {
+
 	string temp;
 	int digit;
 	srand(time(NULL));
