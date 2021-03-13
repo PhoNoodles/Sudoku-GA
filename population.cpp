@@ -84,7 +84,6 @@ int Population::breed(const int parent1, const int parent2)
 
     //need to make a new constructor to make children
     //add them to the population
-
     return 0;
 }
 
@@ -107,7 +106,7 @@ int Population::solve(const int initial[ROW][COL])
         sort(population.begin(), population.end(), compare);
 
         //  Checks if the population is in a solved state (TBD)
-        //flag = checkSolved();
+        flag = checkSolved();
         
         //  Removes the least fittest 50% from the popultion
         for(int i = 0; i < POP_SIZE/2; ++i)
@@ -129,10 +128,12 @@ int Population::solve(const int initial[ROW][COL])
         ++gen_count;
 
     }while(gen_count < GEN_SIZE && flag == false);
+   
 
     generations = gen_count;
 
     return flag;
+  
 }
 
 int Population::totalFit()

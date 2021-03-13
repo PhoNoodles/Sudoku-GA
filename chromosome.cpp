@@ -3,6 +3,7 @@
 
 Chromosome::Chromosome(const int initial_state[ROW][COL])
 {
+	copyBoard(initial_state);
 	fillBoard();//fill up the rest of the board
 	fitness_score = fitnessEval();
 }
@@ -17,34 +18,49 @@ void Chromosome::printState()
 		cout << endl;
 	}
 }
-
+void Chromosome::copyBoard(const int initial_state[COL][ROW])
+{
+	for(int i = 0; i < COL; ++i)
+	{
+		for(int j = 0; j < ROW; ++j)
+		{
+			board[i][j] = initial_state[i][j];
+		}
+	}
+}
 void Chromosome::fillBoard()
 {
     cout << "fillBoard" << endl;
 	for(int i = 0; i < COL ; ++i)//this is to go through each row
-	{
+	{	
+		cout << "through each row" << endl;
 		//this section is to see what number is already in the row 
 		int number[9] = {1,2,3,4,5,6,7,8,9};
 		for(int j = 0; j < ROW; ++j)
 		{
+			//cout << "Check what number is in the row" << endl;
 			//this is to mark what is already in the row
 			if(board[i][j] != 0)
 			{
-				number[board[i][j]+1] = 0; 
+				number[board[i][j]-1] = 0; 
 			}
+			//cout << "at the end " << endl;
 		}
+		//cout << "it is done" << endl;
 		//this is where we start filling in the row
 		for(int j = 0; j < ROW; ++j)
 		{
+			//cout << "Begin to fill in Row" << endl;	
 			//if the board is 0 that means that it is not a fix number
 			if(board[i][j] == 0)
 			{
 				//this is to choose a number that is not in the row
-				int x = rand() % 8;
+				int x = rand() % 9;
 				//this is where we keep finding a number that hasnt been used
 				while(number[x] == 0)
 				{
-					rand() % 8; 
+					cout << "The number in the array is 0" << endl;
+					x = rand() % 9; 
 				}
 				//this is to add the number into the row
 				board[i][j] = number[x];
