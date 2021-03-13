@@ -31,6 +31,7 @@ void readIn(char *file_name, int initial_state[ROW][COL])
 
 int main(int argc, char *argv[])
 {
+    srand(time(NULL));
     int initial_state[ROW][COL];
     if(argc > 1)
     {

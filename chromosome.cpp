@@ -23,7 +23,7 @@ void Chromosome::fillBoard()
 	for(int i = 0; i < COL ; ++i)//this is to go through each row
 	{
 		//this section is to see what number is already in the row 
-		int number[1,2,3,4,5,6,7,8,9];
+		int number[9] = {1,2,3,4,5,6,7,8,9};
 		for(int j = 0; j < ROW; ++j)
 		{
 			//this is to mark what is already in the row
