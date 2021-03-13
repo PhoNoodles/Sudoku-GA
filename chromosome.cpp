@@ -3,12 +3,13 @@
 
 Chromosome::Chromosome(const int state[ROW][COL], bool flag)
 {
-    cout << "chromosome constructor" << endl;
 	copyBoard(state);
    
     //  Flag is true when the board needs filling (aka; when given an intitial state)
-    if(flag)
+    //if(flag)
 	    fillBoard();
+
+    printState();
 
 	fitness_score = fitnessEval();
 }
@@ -19,7 +20,7 @@ void Chromosome::printState()
 	{
 		for(int j = 0; j < ROW; ++j)
 		{
-			cout << board[i][j] << " ";
+			cout << board[i][j];
 		}
 		cout << endl;
 	}
@@ -27,7 +28,6 @@ void Chromosome::printState()
 
 void Chromosome::copyBoard(const int state[COL][ROW])
 {
-    cout << "copyBoard" << endl;
 	for(int i = 0; i < COL; ++i)
 	{
 		for(int j = 0; j < ROW; ++j)
@@ -39,7 +39,6 @@ void Chromosome::copyBoard(const int state[COL][ROW])
 
 void Chromosome::fillBoard()
 {
-    cout << "fillBoard" << endl;
 	for(int i = 0; i < COL ; ++i)//this is to go through each row
 	{	
 		//this section is to see what number is already in the row 
@@ -79,6 +78,7 @@ void Chromosome::fillBoard()
 
 int Chromosome::fitnessEval()
 {
+/*
     cout << "start of fitnessEval" << endl;
 	int fitness=216;
 	int row [9] = {0,0,0,0,0,0,0,0,0};
@@ -149,6 +149,8 @@ int Chromosome::fitnessEval()
 
     cout << "end of fitness eval" << endl;
 	return fitness;
+*/
+
 
 }
 
