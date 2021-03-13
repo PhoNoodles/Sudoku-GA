@@ -16,11 +16,12 @@ class Population
         ~Population();
 
         bool checkSolved();
-        int chooseParent();
+        int chooseParent(int total);
         void mutatePct(int child_state[ROW][COL]);
         int breed(const int parent1, const int parent2);
         int solve(vector<vector<int>> initial);
         void printPopulation();
+        int totalFit();
 
     private:
         vector<Chromosome*> population;
