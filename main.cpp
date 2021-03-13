@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        cout << "No file name detected." << endl;
+        cout << "No file detected." << endl;
         return 0;
     }
 
