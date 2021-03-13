@@ -1,7 +1,7 @@
 #include "population.h"
 #include "chromosome.h"
 
-const int POP_SIZE = 50;
+const int POP_SIZE = 100;
 const int GEN_SIZE = 100;
 
 Population::Population(const int initial_state[ROW][COL])
@@ -42,6 +42,9 @@ void Population::mutatePct(int child_state[ROW][COL])
 //  Breeds two new children from the chosen parents, and adding them into the new population.
 int Population::breed(const int parent1, const int parent2)
 {
+    cout << "parent1: " << parent1 << endl;
+    cout << "parent2: " << parent2 << endl;
+
     cout << "breed" << endl;
     int child1[ROW][COL];
     int child2[ROW][COL];
@@ -114,6 +117,7 @@ int Population::solve(const int initial[ROW][COL])
         //  population is back to its original size
         do{
             int total = totalFit();
+            cout << "totalfitness: " << total << endl;
             parent1 = chooseParent(total);
             parent2 = chooseParent(total);
             breed(parent1, parent2);
@@ -122,6 +126,17 @@ int Population::solve(const int initial[ROW][COL])
         }while(pop_size < POP_SIZE);
 
         ++gen_count;
+
+        /*
+        for(int j = 0; j < 9; ++j)
+        {
+            for(int k = 0; k < 9; ++k)
+            {
+                cout << population[0]->board[j][k];
+            }
+            cout << endl;
+        }
+        */
 
     //}while(gen_count < GEN_SIZE && flag == false);
     }while(gen_count < GEN_SIZE);
@@ -148,7 +163,7 @@ int Population::chooseParent(int total)
     int i = 0;
     while(random > 0){
         random -= population[i]->fitness_score;
-        if(random < 0)
+        if(random <= 0)
         {
             return i;
         }
