@@ -22,10 +22,12 @@ class Population
         int solve(const int initial[ROW][COL]);
         void printPopulation();
         int totalFit();
+        void copy(const int state[ROW][COL]);
 
     private:
         vector<Chromosome*> population;
         int generations;
+        int first[9][9]; 
         
 };
 

@@ -21,7 +21,7 @@ class Chromosome
         int fitnessEval();
         void printState();
 	    int checkedAlready(int array [],int num);
-        void copyBoard(const int initial_state[COL][ROW]);
+        void copyBoard(const int initial_state[ROW][COL]);
 
         int board[ROW][COL];
         int fitness_score;

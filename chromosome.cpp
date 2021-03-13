@@ -8,7 +8,7 @@ Chromosome::Chromosome(const int state[ROW][COL], bool flag)
     //  Flag is true when the board needs filling (aka; when given an intitial state)
     //if(flag)
 	    fillBoard();
-
+	cout << endl;
     printState();
 
 	fitness_score = fitnessEval();
@@ -78,6 +78,177 @@ void Chromosome::fillBoard()
 
 int Chromosome::fitnessEval()
 {
+	int cdouble = 648;
+	// int cdouble = 972;//I comment this because the row will always be correct cuz we made that our contrasaint
+    // for (int i = 0; i < 9; ++i)
+    // {
+    //     for (int k = 0; k < 9; ++k)
+    //     {
+
+    //         for (int j = k; j < 9; ++j)
+    //         {
+    //             if (board[i][k] == board[i][j])
+    //             {
+    //                 --cdouble;
+    //             }
+    //         }
+    //         ++cdouble;
+    //     }
+    // }
+    for (int i = 0; i < 9; ++i)
+    {
+        for (int k = 0; k < 9; ++k)
+        {
+            for (int j = k; j < 9; ++j)
+            {
+                if (board[k][j] == board[i][j])
+                {
+                    --cdouble;
+                }
+            }
+            ++cdouble;
+        }
+    }
+    //this is top left
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int k = i; k < 3; ++k)
+        {
+            for (int l = 0; l < 3; ++l)
+            {
+                for (int j = l; j < 3; ++j)
+                {
+                    if (board[k][l] == board[i][j])
+                        --cdouble;
+                }
+            }
+        }
+    }
+    //this is top middle
+    for (int i = 0; i < 3; ++i)
+    {
+        for (int k = i; k < 3; ++k)
+        {
+            for (int l = 3; l < 6; ++l)
+            {
+                for (int j = l; j < 6; ++j)
+                {
+                    if (board[k][l] == board[i][j])
+                        --cdouble;
+                }
+            }
+        }
+    }
+    //this is top right
+     for (int i = 0; i < 3; ++i)
+    {
+        for (int k = i; k < 3; ++k)
+        {
+            for (int l = 6; l < 9; ++l)
+            {
+                for (int j = l; j < 9; ++j)
+                {
+                    if (board[k][l] == board[i][j])
+                        --cdouble;
+                }
+            }
+        }
+    }
+    //this is mid right
+       for (int i = 3; i < 6; ++i)
+    {
+        for (int k = i; k < 6; ++k)
+        {
+            for (int l = 0; l < 3; ++l)
+            {
+                for (int j = l; j < 3; ++j)
+                {
+                    if (board[k][l] == board[i][j])
+                        --cdouble;
+                }
+            }
+        }
+    }
+    //this is middle middle
+        for (int i = 3; i < 6; ++i)
+    {
+        for (int k = i; k < 6; ++k)
+        {
+            for (int l = 3; l < 6; ++l)
+            {
+                for (int j = l; j < 6; ++j)
+                {
+                    if (board[k][l] == board[i][j])
+                        --cdouble;
+                }
+            }
+        }
+    }
+    //this is middle right
+         for (int i = 3; i < 6; ++i)
+    {
+        for (int k = i; k < 6; ++k)
+        {
+            for (int l = 6; l < 9; ++l)
+            {
+                for (int j = l; j < 9; ++j)
+                {
+                    if (board[k][l] == board[i][j])
+                        --cdouble;
+                }
+            }
+        }
+    }
+    //this is bot right
+        for (int i = 6; i < 9; ++i)
+    {
+        for (int k = i; k < 9; ++k)
+        {
+            for (int l = 0; l < 3; ++l)
+            {
+                for (int j = l; j < 3; ++j)
+                {
+                    if (board[k][l] == board[i][j])
+                        --cdouble;
+                }
+            }
+        }
+    }
+
+    //this is bot middle
+    for (int i = 6; i < 9; ++i)
+    {
+        for (int k = i; k < 9; ++k)
+        {
+            for (int l = 3; l < 6; ++l)
+            {
+                for (int j = l; j < 6; ++j)
+                {
+                    if (board[k][l] == board[i][j])
+                        --cdouble;
+                }
+            }
+        }
+    }
+ 
+    //this is bot right
+for (int i = 6; i < 9; ++i)
+    {
+        for (int k = i; k < 9; ++k)
+        {
+            for (int l = 6; l < 9; ++l)
+            {
+                for (int j = l; j < 9; ++j)
+                {
+                    if (board[k][l] == board[i][j])
+                        --cdouble;
+                }
+            }
+        }
+    }
+    
+    //cout << cdouble << endl;
+	return cdouble;
 /*
     cout << "start of fitnessEval" << endl;
 	int fitness=216;

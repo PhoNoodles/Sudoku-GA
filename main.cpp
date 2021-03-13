@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
         cout << "No file detected." << endl;
         return 0;
     }
-
+    
     //  Test: Displays intial sudoku state
     for(int i = 0; i < ROW; ++i)
     {
@@ -54,6 +54,7 @@ int main(int argc, char *argv[])
     }
 
     Population* initial = new Population(initial_state);
+    initial->copy(initial_state);
     initial->solve(initial_state);
 
     return 0;
