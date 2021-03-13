@@ -8,7 +8,7 @@ Population::Population(const int initial_state[ROW][COL])
 {
 	for(int i=0;i<POP_SIZE;++i)
 	{
-		chromosome* temp = new Chromosome(initial_state);
+		Chromosome* temp = new Chromosome(initial_state);
 		population.push_back(temp);
 	}
 	generations=0;
