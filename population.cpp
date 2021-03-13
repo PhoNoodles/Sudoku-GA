@@ -6,14 +6,12 @@ const int GEN_SIZE = 1000;
 
 Population::Population(const int initial_state[ROW][COL])
 {
-    //Chromosome * temp;
 	for(int i=0;i<POP_SIZE;++i)
 	{
-		//temp = new Chromosome();
-		population.clear();
+		Chromosome* temp = new Chromosome(initial_state);
+		population.push_back(temp);
 	}
 	generations=0;
-    //totalFit += temp.fitness_score;
 }
 
 Population::~Population()
