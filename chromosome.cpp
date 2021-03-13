@@ -20,6 +20,7 @@ void Chromosome::printState()
 
 void Chromosome::fillBoard()
 {
+    cout << "fillBoard" << endl;
 	for(int i = 0; i < COL ; ++i)//this is to go through each row
 	{
 		//this section is to see what number is already in the row 
@@ -52,6 +53,7 @@ void Chromosome::fillBoard()
 			}
 		}
 	}
+    cout << "end of fillBoard" << endl;
 
 	return;
 
@@ -59,6 +61,7 @@ void Chromosome::fillBoard()
 
 int Chromosome::fitnessEval()
 {
+    cout << "fitnessEval" << endl;
 	int fitness=216;
 	int row [9] = {0,0,0,0,0,0,0,0,0};
 	int column [9] = {0,0,0,0,0,0,0,0,0};
@@ -131,6 +134,7 @@ int Chromosome::fitnessEval()
 
 int Chromosome::checkedAlready(int array [],int num)
 {	
+    cout << "checkedAlready" << endl;
 	for(int i=0;i<9;++i)
 	{
 		if(num==array[i])

@@ -1,8 +1,8 @@
 #include "population.h"
 #include "chromosome.h"
 
-const int POP_SIZE = 500;
-const int GEN_SIZE = 1000;
+const int POP_SIZE = 50;
+const int GEN_SIZE = 100;
 
 Population::Population(const int initial_state[ROW][COL])
 {
@@ -24,6 +24,7 @@ Population::~Population()
 //  Newly generated children have a probability of their genes being mutated
 void Population::mutatePct(int child_state[ROW][COL])
 {
+    cout << "mutatPCT" << endl;
     int pct = rand() % 100;
     if(pct < 30)
     {
@@ -41,6 +42,7 @@ void Population::mutatePct(int child_state[ROW][COL])
 //  Breeds two new children from the chosen parents, and adding them into the new population.
 int Population::breed(const int parent1, const int parent2)
 {
+    cout << "breed" << endl;
     int child1[ROW][COL];
     int child2[ROW][COL];
 
@@ -91,8 +93,9 @@ bool compare(const Chromosome* arg1, const Chromosome* arg2)
     return arg1->fitness_score > arg2->fitness_score;
 }
 
-int Population::solve(vector<vector<int>> initial)
+int Population::solve(const int initial[ROW][COL])
 {
+    cout << "solve" << endl;
     int parent1, parent2;
     int pop_size;
     bool flag;
@@ -118,8 +121,8 @@ int Population::solve(vector<vector<int>> initial)
             int total = totalFit();
             parent1 = chooseParent(total);
             parent2 = chooseParent(total);
-            //breed(parent1, parent2);
-            //pop_size = population.size();
+            breed(parent1, parent2);
+            pop_size = population.size();
             
         }while(pop_size < POP_SIZE);
 
@@ -130,10 +133,11 @@ int Population::solve(vector<vector<int>> initial)
     generations = gen_count;
 
     return flag;
-
 }
+
 int Population::totalFit()
 {
+    cout << "totalFit" << endl;
     int total = 0;
     for(int i = 0; i < POP_SIZE; ++i)
     {
@@ -141,8 +145,10 @@ int Population::totalFit()
     }
     return total;
 }
+
 int Population::chooseParent(int total)
 {
+    cout << "chooseParent" << endl;
     int random = rand() % total;
     int i = 0;
     while(random > 0){
@@ -155,7 +161,6 @@ int Population::chooseParent(int total)
         {
            ++i;  
         }
-        
     }
 
     return -1;

@@ -53,7 +53,8 @@ int main(int argc, char *argv[])
         cout << endl;
     }
 
-    //Population* initial = new Population(initial_state);
+    Population* initial = new Population(initial_state);
+    initial->solve(initial_state);
 
     return 0;
 }

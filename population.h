@@ -19,7 +19,7 @@ class Population
         int chooseParent(int total);
         void mutatePct(int child_state[ROW][COL]);
         int breed(const int parent1, const int parent2);
-        int solve(vector<vector<int>> initial);
+        int solve(const int initial[ROW][COL]);
         void printPopulation();
         int totalFit();
 
