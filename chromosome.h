@@ -19,6 +19,7 @@ class Chromosome
         void fillBoard();
         int fitnessEval();
         void printState();
+	int checkedAlready(int array [],int num);
 
         int board[ROW][COL];
         int fitness_score;
