@@ -15,11 +15,12 @@ const int COL = 9;
 class Chromosome
 {
     public:
-        Chromosome(const int initial_state[ROW][COL]);
+        Chromosome(const int state[ROW][COL], bool flag);
+
         void fillBoard();
         int fitnessEval();
         void printState();
-	int checkedAlready(int array [],int num);
+	    int checkedAlready(int array [],int num);
         void copyBoard(const int initial_state[COL][ROW]);
 
         int board[ROW][COL];

@@ -1,12 +1,18 @@
 #include "population.h"
 #include "chromosome.h"
 
-Chromosome::Chromosome(const int initial_state[ROW][COL])
+Chromosome::Chromosome(const int state[ROW][COL], bool flag)
 {
-	copyBoard(initial_state);
-	fillBoard();//fill up the rest of the board
+    cout << "chromosome constructor" << endl;
+	copyBoard(state);
+   
+    //  Flag is true when the board needs filling (aka; when given an intitial state)
+    if(flag)
+	    fillBoard();
+
 	fitness_score = fitnessEval();
 }
+
 void Chromosome::printState()
 {
 	for(int i = 0; i < COL; ++i)
@@ -18,39 +24,37 @@ void Chromosome::printState()
 		cout << endl;
 	}
 }
-void Chromosome::copyBoard(const int initial_state[COL][ROW])
+
+void Chromosome::copyBoard(const int state[COL][ROW])
 {
+    cout << "copyBoard" << endl;
 	for(int i = 0; i < COL; ++i)
 	{
 		for(int j = 0; j < ROW; ++j)
 		{
-			board[i][j] = initial_state[i][j];
+			board[i][j] = state[i][j];
 		}
 	}
 }
+
 void Chromosome::fillBoard()
 {
     cout << "fillBoard" << endl;
 	for(int i = 0; i < COL ; ++i)//this is to go through each row
 	{	
-		cout << "through each row" << endl;
 		//this section is to see what number is already in the row 
 		int number[9] = {1,2,3,4,5,6,7,8,9};
 		for(int j = 0; j < ROW; ++j)
 		{
-			//cout << "Check what number is in the row" << endl;
 			//this is to mark what is already in the row
 			if(board[i][j] != 0)
 			{
 				number[board[i][j]-1] = 0; 
 			}
-			//cout << "at the end " << endl;
 		}
-		//cout << "it is done" << endl;
 		//this is where we start filling in the row
 		for(int j = 0; j < ROW; ++j)
 		{
-			//cout << "Begin to fill in Row" << endl;	
 			//if the board is 0 that means that it is not a fix number
 			if(board[i][j] == 0)
 			{
@@ -59,7 +63,6 @@ void Chromosome::fillBoard()
 				//this is where we keep finding a number that hasnt been used
 				while(number[x] == 0)
 				{
-					cout << "The number in the array is 0" << endl;
 					x = rand() % 9; 
 				}
 				//this is to add the number into the row
@@ -69,7 +72,6 @@ void Chromosome::fillBoard()
 			}
 		}
 	}
-    cout << "end of fillBoard" << endl;
 
 	return;
 
@@ -77,7 +79,7 @@ void Chromosome::fillBoard()
 
 int Chromosome::fitnessEval()
 {
-    cout << "fitnessEval" << endl;
+    cout << "start of fitnessEval" << endl;
 	int fitness=216;
 	int row [9] = {0,0,0,0,0,0,0,0,0};
 	int column [9] = {0,0,0,0,0,0,0,0,0};
@@ -144,13 +146,14 @@ int Chromosome::fitnessEval()
 			subGrid[p]=0;
 
 	}
+
+    cout << "end of fitness eval" << endl;
 	return fitness;
 
 }
 
 int Chromosome::checkedAlready(int array [],int num)
 {	
-    cout << "checkedAlready" << endl;
 	for(int i=0;i<9;++i)
 	{
 		if(num==array[i])

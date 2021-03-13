@@ -6,19 +6,19 @@ const int GEN_SIZE = 100;
 
 Population::Population(const int initial_state[ROW][COL])
 {
+    cout << "population constructor" << endl;
 	for(int i=0;i<POP_SIZE;++i)
 	{
-		Chromosome* temp = new Chromosome(initial_state);
+		Chromosome* temp = new Chromosome(initial_state, true);
 		population.push_back(temp);
 	}
-	generations=0;
+	generations = 0;
 }
 
 Population::~Population()
 {
 	population.clear();
-	generations=0;
-
+	generations = 0;
 }
 
 //  Newly generated children have a probability of their genes being mutated
@@ -29,9 +29,9 @@ void Population::mutatePct(int child_state[ROW][COL])
     if(pct < 30)
     {
         int cell_mutate = rand() % 4;
-        for(int i = 0; i < 9; ++i)
+        for(int i = 0; i < ROW; ++i)
         {
-            for(int j = cell_mutate; j < 9; j+=2)
+            for(int j = cell_mutate; j < COL; j+=2)
             {
                 child_state[i][j] = rand() % 9 + 1;
             }
@@ -49,41 +49,37 @@ int Population::breed(const int parent1, const int parent2)
     //  Random cross section index [1-7]
     int cross = rand() % 7 + 1;
     //  Determines which rows will be undergo crossover  
-    int row_merge = 3;
-    for(int i = 0; i < 9; ++i)
+    for(int i = 0; i < ROW; ++i)
     {
         //  Selected rows from both parents will be crossed over 
-        if(i == row_merge)
+        if(i < cross)
         {
-            int j;
-            for(j = 0; j < cross; ++j)
+            for(int j = 0; j < COL; ++j)
             {
                 child1[i][j] = population[parent1]->board[i][j];
                 child2[i][j] = population[parent2]->board[i][j];
             }
-            for(j; j < 9; ++j)
-            {
-                child1[i][j] = population[parent2]->board[i][j];
-                child2[i][j] = population[parent1]->board[i][j];
-            }
-            row_merge += 2;
         }
         else
         {
-            for(int j = 0; j < 9; ++i)
+            for(int j = 0; j < COL; ++j)
             {
-                child1[i][j] = population[parent1]->board[i][j];
-                child2[i][j] = population[parent2]->board[i][j];
+                child1[i][j] = population[parent2]->board[i][j];
+                child2[i][j] = population[parent1]->board[i][j];
             }
         }
     }
 
     //  There a probability that the childrens gene will mutate randomly
-    mutatePct(child1);
-    mutatePct(child2);
+    //mutatePct(child1);
+    //mutatePct(child2);
 
-    //need to make a new constructor to make children
-    //add them to the population
+	Chromosome* temp1 = new Chromosome(child1, false);
+	population.push_back(temp1);
+
+	Chromosome* temp2 = new Chromosome(child2, false);
+	population.push_back(temp2);
+
     return 0;
 }
 
@@ -97,7 +93,7 @@ int Population::solve(const int initial[ROW][COL])
     cout << "solve" << endl;
     int parent1, parent2;
     int pop_size;
-    bool flag;
+    //bool flag;
 
     int gen_count = 1;
     do{
@@ -106,7 +102,7 @@ int Population::solve(const int initial[ROW][COL])
         sort(population.begin(), population.end(), compare);
 
         //  Checks if the population is in a solved state (TBD)
-        flag = checkSolved();
+        //flag = checkSolved();
         
         //  Removes the least fittest 50% from the popultion
         for(int i = 0; i < POP_SIZE/2; ++i)
@@ -127,18 +123,17 @@ int Population::solve(const int initial[ROW][COL])
 
         ++gen_count;
 
-    }while(gen_count < GEN_SIZE && flag == false);
+    //}while(gen_count < GEN_SIZE && flag == false);
+    }while(gen_count < GEN_SIZE);
    
-
     generations = gen_count;
 
-    return flag;
+    return 0;
   
 }
 
 int Population::totalFit()
 {
-    cout << "totalFit" << endl;
     int total = 0;
     for(int i = 0; i < POP_SIZE; ++i)
     {
@@ -149,7 +144,6 @@ int Population::totalFit()
 
 int Population::chooseParent(int total)
 {
-    cout << "chooseParent" << endl;
     int random = rand() % total;
     int i = 0;
     while(random > 0){
