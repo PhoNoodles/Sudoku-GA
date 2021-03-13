@@ -17,6 +17,7 @@ class Population
 
         bool checkSolved();
         int chooseParent();
+        void mutatePct(int child_state[ROW][COL]);
         int breed(const int parent1, const int parent2);
         int solve(vector<vector<int>> initial);
         void printPopulation();
