@@ -6,7 +6,6 @@ const int GEN_SIZE = 500;
 
 Population::Population(const int initial_state[ROW][COL])
 {
-    cout << "population constructor" << endl;
     for (int i = 0; i < POP_SIZE; ++i)
     {
         Chromosome *temp = new Chromosome(initial_state, true);
@@ -24,25 +23,10 @@ Population::~Population()
 //  Newly generated children have a probability of their genes being mutated
 void Population::mutatePct(int child_state[ROW][COL])
 {
-    /*
-    cout << "mutatPCT" << endl;
-    int pct = rand() % 100;
-    if(pct < 30)
-    {
-        int cell_mutate = rand() % 4;
-        for(int i = 0; i < ROW; ++i)
-        {
-            for(int j = cell_mutate; j < COL; j+=2)
-            {
-                child_state[i][j] = rand() % 9 + 1;
-            }
-        }
-    }*/
-    cout << "mutatPCT" << endl;
     int row = rand() % 9;
     int mutation[9];
     int pct = rand() % 100;
-    if (pct < 30)
+    if (pct < 70)
     {
         int number[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         for (int j = 0; j < COL; ++j)
@@ -78,18 +62,24 @@ void Population::mutatePct(int child_state[ROW][COL])
     }
 }
 
-//  Breeds two new children from the chosen parents, and adding them into the new population.
-int Population::breed(const int parent1, const int parent2)
+//  While having sex, the parents have a chance of dying
+bool Population::randomDeath(const int parent1, const int parent2)
 {
-    cout << "parent1: " << parent1 << endl;
-    cout << "parent2: " << parent2 << endl;
+    return false;
+}
 
-    cout << "breed" << endl;
+//  Breeds two new children from the chosen parents, and adding them into the new population.
+void Population::breed(const int parent1, const int parent2)
+{
+    //  While having sex, the parents have a chance of dying
+    if(randomDeath(parent1, parent2))
+        return;
+
     int child1[ROW][COL];
     int child2[ROW][COL];
 
     //  Random cross section index [1-7]
-    int cross = rand() % 9;//7 + 1;
+    int cross = rand() % 8+1;//7 + 1;
     //  Determines which rows will be undergo crossover
     for (int i = 0; i < ROW; ++i)
     {
@@ -121,8 +111,6 @@ int Population::breed(const int parent1, const int parent2)
 
     Chromosome *temp2 = new Chromosome(child2, false);
     population.push_back(temp2);
-
-    return 0;
 }
 
 bool compare(const Chromosome *arg1, const Chromosome *arg2)
@@ -132,7 +120,6 @@ bool compare(const Chromosome *arg1, const Chromosome *arg2)
 
 int Population::solve(const int initial[ROW][COL])
 {
-    cout << "solve" << endl;
     int parent1, parent2;
     int pop_size;
     //bool flag;
@@ -168,18 +155,8 @@ int Population::solve(const int initial[ROW][COL])
 
         ++gen_count;
 
-        /*
-        for(int j = 0; j < 9; ++j)
-        {
-            for(int k = 0; k < 9; ++k)
-            {
-                cout << population[0]->board[j][k];
-            }
-            cout << endl;
-        }
-        */
 
-        //}while(gen_count < GEN_SIZE && flag == false);
+    //}while(gen_count < GEN_SIZE && flag == false);
     } while (gen_count < GEN_SIZE);
 
     generations = gen_count;

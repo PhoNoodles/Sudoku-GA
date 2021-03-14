@@ -18,7 +18,8 @@ class Population
         bool checkSolved();
         int chooseParent(int total);
         void mutatePct(int child_state[ROW][COL]);
-        int breed(const int parent1, const int parent2);
+        bool randomDeath(const int parent1, const int parent2);
+        void breed(const int parent1, const int parent2);
         int solve(const int initial[ROW][COL]);
         void printPopulation();
         int totalFit();
@@ -27,7 +28,7 @@ class Population
     private:
         vector<Chromosome*> population;
         int generations;
-        int first[9][9]; 
+        int first[ROW][COL]; 
         
 };
 
