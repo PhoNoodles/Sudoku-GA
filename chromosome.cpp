@@ -1,17 +1,16 @@
 #include "population.h"
 #include "chromosome.h"
 
-Chromosome::Chromosome(const int state[ROW][COL], bool flag)
+Chromosome::Chromosome(const int state[ROW][COL])
 {
 	copyBoard(state);
    
-    //  Flag is true when the board needs filling (aka; when given an intitial state)
-    //if(flag)
-	    fillBoard();
+	fillBoard();
 	cout << endl;
     printState();
 
 	fitness_score = fitnessEval();
+    cout << "Fitness score: " << fitness_score << endl;
 }
 
 void Chromosome::printState()

@@ -15,7 +15,7 @@ const int COL = 9;
 class Chromosome
 {
     public:
-        Chromosome(const int state[ROW][COL], bool flag);
+        Chromosome(const int state[ROW][COL]);
 
         void fillBoard();
         int fitnessEval();
