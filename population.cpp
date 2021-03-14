@@ -8,7 +8,7 @@ Population::Population(const int initial_state[ROW][COL])
 {
     for (int i = 0; i < POP_SIZE; ++i)
     {
-        Chromosome *temp = new Chromosome(initial_state, true);
+        Chromosome *temp = new Chromosome(initial_state);
         population.push_back(temp);
     }
     generations = 0;
@@ -106,10 +106,10 @@ void Population::breed(const int parent1, const int parent2)
     mutatePct(child1);
     mutatePct(child2);
 
-    Chromosome *temp1 = new Chromosome(child1, false);
+    Chromosome *temp1 = new Chromosome(child1);
     population.push_back(temp1);
 
-    Chromosome *temp2 = new Chromosome(child2, false);
+    Chromosome *temp2 = new Chromosome(child2);
     population.push_back(temp2);
 }
 
@@ -154,7 +154,6 @@ int Population::solve(const int initial[ROW][COL])
         } while (pop_size < POP_SIZE);
 
         ++gen_count;
-
 
     //}while(gen_count < GEN_SIZE && flag == false);
     } while (gen_count < GEN_SIZE);
