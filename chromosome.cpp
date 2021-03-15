@@ -4,13 +4,11 @@
 Chromosome::Chromosome(const int state[ROW][COL])
 {
 	copyBoard(state);
-   
 	fillBoard();
 	cout << endl;
-    printState();
-
+	printState();
 	fitness_score = fitnessEval();
-    cout << "Fitness score: " << fitness_score << endl;
+	cout << "Fitness score: " << fitness_score << endl;
 }
 
 void Chromosome::printState()
