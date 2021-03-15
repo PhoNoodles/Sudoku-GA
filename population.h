@@ -23,6 +23,7 @@ class Population
         int solve(const int initial[ROW][COL]);
         void printPopulation();
         int totalFit();
+	int averageFitness();
         void copy(const int state[ROW][COL]);
 
     private:
