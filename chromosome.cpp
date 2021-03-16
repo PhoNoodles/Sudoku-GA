@@ -75,7 +75,9 @@ void Chromosome::fillBoard()
 
 int Chromosome::fitnessEval()
 {
+	/*
 	int cdouble = 648;
+	//int cdouble = 36;
 	// int cdouble = 972;//I comment this because the row will always be correct cuz we made that our contrasaint
     // for (int i = 0; i < 9; ++i)
     // {
@@ -98,7 +100,7 @@ int Chromosome::fitnessEval()
         {
             for (int j = k; j < 9; ++j)
             {
-                if (board[k][j] == board[i][j])
+                if (board[i][k] == board[i][j])
                 {
                     --cdouble;
                 }
@@ -109,149 +111,161 @@ int Chromosome::fitnessEval()
     //this is top left
     for (int i = 0; i < 3; ++i)
     {
-        for (int k = i; k < 3; ++k)
+        for (int k = 0; k < 3; ++k)
         {
             for (int l = 0; l < 3; ++l)
             {
-                for (int j = l; j < 3; ++j)
+                for (int j = 0; j < 3; ++j)
                 {
-                    if (board[k][l] == board[i][j])
+                    if (board[i][k] == board[l][j])
                         --cdouble;
                 }
             }
+	    ++cdouble;
         }
     }
     //this is top middle
     for (int i = 0; i < 3; ++i)
     {
-        for (int k = i; k < 3; ++k)
+        for (int k = 3; k < 6; ++k)
         {
-            for (int l = 3; l < 6; ++l)
+            for (int l = 0; l < 3; ++l)
             {
-                for (int j = l; j < 6; ++j)
+                for (int j = 3; j < 6; ++j)
                 {
-                    if (board[k][l] == board[i][j])
+		    if (board[i][k] == board[l][j])
                         --cdouble;
                 }
             }
+	     ++cdouble;
         }
     }
     //this is top right
      for (int i = 0; i < 3; ++i)
     {
-        for (int k = i; k < 3; ++k)
-        {
-            for (int l = 6; l < 9; ++l)
-            {
-                for (int j = l; j < 9; ++j)
-                {
-                    if (board[k][l] == board[i][j])
-                        --cdouble;
-                }
-            }
-        }
-    }
-    //this is mid right
-       for (int i = 3; i < 6; ++i)
-    {
-        for (int k = i; k < 6; ++k)
+        for (int k = 6; k < 9; ++k)
         {
             for (int l = 0; l < 3; ++l)
             {
-                for (int j = l; j < 3; ++j)
+                for (int j = 6; j < 9; ++j)
                 {
-                    if (board[k][l] == board[i][j])
+                    if (board[i][k] == board[l][j])
                         --cdouble;
                 }
             }
+	    ++cdouble;
+        }
+    }
+    //this is middle left
+       for (int i = 3; i < 6; ++i)
+    {
+        for (int k = 0; k < 3; ++k)
+        {
+            for (int l = 3; l < 6; ++l)
+            {
+                for (int j = 0; j < 3; ++j)
+                {
+                    if (board[i][k] == board[l][j])
+                        --cdouble;
+                }
+            }
+	    ++cdouble;
         }
     }
     //this is middle middle
         for (int i = 3; i < 6; ++i)
     {
-        for (int k = i; k < 6; ++k)
+        for (int k = 3; k < 6; ++k)
         {
             for (int l = 3; l < 6; ++l)
             {
-                for (int j = l; j < 6; ++j)
+                for (int j = 3; j < 6; ++j)
                 {
-                    if (board[k][l] == board[i][j])
+                    if (board[i][k] == board[l][j])
                         --cdouble;
                 }
             }
+	    ++cdouble;
         }
     }
     //this is middle right
          for (int i = 3; i < 6; ++i)
     {
-        for (int k = i; k < 6; ++k)
+        for (int k = 6; k < 9; ++k)
+        {
+            for (int l = 3; l < 6; ++l)
+            {
+                for (int j = 6; j < 9; ++j)
+                {
+                    if (board[i][k] == board[i][j])
+                        --cdouble;
+                }
+            }
+	    ++cdouble;
+        }
+    }
+    //this is bot left
+        for (int i = 6; i < 9; ++i)
+    {
+        for (int k = 0; k < 3; ++k)
         {
             for (int l = 6; l < 9; ++l)
             {
-                for (int j = l; j < 9; ++j)
+                for (int j = 0; j < 3; ++j)
                 {
-                    if (board[k][l] == board[i][j])
+                    if (board[i][k] == board[i][j])
                         --cdouble;
                 }
             }
-        }
-    }
-    //this is bot right
-        for (int i = 6; i < 9; ++i)
-    {
-        for (int k = i; k < 9; ++k)
-        {
-            for (int l = 0; l < 3; ++l)
-            {
-                for (int j = l; j < 3; ++j)
-                {
-                    if (board[k][l] == board[i][j])
-                        --cdouble;
-                }
-            }
+	    ++cdouble;
         }
     }
 
     //this is bot middle
     for (int i = 6; i < 9; ++i)
     {
-        for (int k = i; k < 9; ++k)
+        for (int k = 3; k < 6; ++k)
         {
-            for (int l = 3; l < 6; ++l)
+            for (int l = 6; l < 9; ++l)
             {
-                for (int j = l; j < 6; ++j)
+                for (int j = 3; j < 6; ++j)
                 {
-                    if (board[k][l] == board[i][j])
+                    if (board[i][k] == board[i][j])
                         --cdouble;
                 }
             }
+	    ++cdouble;
         }
     }
  
     //this is bot right
 for (int i = 6; i < 9; ++i)
     {
-        for (int k = i; k < 9; ++k)
+        for (int k = 6; k < 9; ++k)
         {
             for (int l = 6; l < 9; ++l)
             {
-                for (int j = l; j < 9; ++j)
+                for (int j = 6; j < 9; ++j)
                 {
-                    if (board[k][l] == board[i][j])
+                    if (board[i][k] == board[i][j])
                         --cdouble;
                 }
             }
+	    ++cdouble;
         }
     }
     
     //cout << cdouble << endl;
 	return cdouble;
-/*
-    cout << "start of fitnessEval" << endl;
-	int fitness=216;
+	*/
+    //	cout << "start of fitnessEval" << endl;
+
+	int fitness=648;
+	/*
 	int row [9] = {0,0,0,0,0,0,0,0,0};
 	int column [9] = {0,0,0,0,0,0,0,0,0};
 	int subGrid [9] = {0,0,0,0,0,0,0,0,0};
+	*/
 
 	//Loop nine times 
 	for(int i=0;i<9;++i)
@@ -260,30 +274,32 @@ for (int i = 6; i < 9; ++i)
 		for(int j=0;j<8;++j)
 		{
 			//check for duplicate in row
-			for(int r=1;r<9;++r)
+			for(int r=j+1;r<9;++r)
 			{
-				if(checkedAlready(row,board[i][j]))
-					break;
+				//if(checkedAlready(row,board[i][j]))
+				//	break;
 				if(board[i][j]==board[i][r])
 					--fitness;
 			}
 
 			//check for duplicate in columns
-			for(int c=1;c<9;++c)
+			for(int c=j+1;c<9;++c)
 			{
-				if(checkedAlready(column,board[j][i]))
-					break;
+				//if(checkedAlready(column,board[j][i]))
+					//break;
 				if(board[j][i]==board[c][i])
 					--fitness;
 			}
 
 		}
 		//reset the already checked already to all zeros
+		/*
 		for(int p=0;p<9;++p)
 		{
 			row[p]=0;
 			column[p]=0;
 		}
+		*/
 	}
 
 	for(int r=0;r<7;r+=3)
@@ -293,10 +309,10 @@ for (int i = 6; i < 9; ++i)
 			for(int c1=0;c1<3;++c1)
 			{
 
-				for(int c2=1;c2<3;c2++)
+				for(int c2=c1+1;c2<3;++c2)
 				{
-					if(checkedAlready(subGrid,board[r][c1]))
-						break;
+					//if(checkedAlready(subGrid,board[r][c1]))
+					//	break;
 					if(board[r][c+c1]==board[r][c+c2])
 						--fitness;
 				}
@@ -306,19 +322,17 @@ for (int i = 6; i < 9; ++i)
 					--fitness;
 
 			}
-			for(int p;p<9;++p)
-				subGrid[p]=0;
+		//	for(int p;p<9;++p)
+				//subGrid[p]=0;
 
 		}
-		for(int p;p<9;++p)
-			subGrid[p]=0;
+		//for(int p;p<9;++p)
+			//subGrid[p]=0;
 
 	}
 
-    cout << "end of fitness eval" << endl;
+    //cout << "end of fitness eval" << endl;
 	return fitness;
-*/
-
 
 }
 

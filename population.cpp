@@ -1,8 +1,8 @@
 #include "population.h"
 #include "chromosome.h"
 
-const int POP_SIZE = 100;
-const int GEN_SIZE = 1000;
+const int POP_SIZE = 1000;
+const int GEN_SIZE = 100;
 
 Population::Population(const int initial_state[ROW][COL])
 {
@@ -23,41 +23,44 @@ Population::~Population()
 //  Newly generated children have a probability of their genes being mutated
 void Population::mutatePct(int child_state[ROW][COL])
 {
-	int row = rand() % 9;
+	//int row = rand() % 9;
 	int mutation[9];
 	int pct = rand() % 100;
-	if (pct < 70)
+	for(int row=0; row<9;++row)
 	{
-		int number[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-		for (int j = 0; j < COL; ++j)
+		if (pct < 70)
 		{
-			mutation[j] = first[row][j];
-			if (first[row][j] != 0)
+			int number[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+			for (int j = 0; j < COL; ++j)
 			{
-				number[first[row][j] - 1] = 0;
-			}
-		}
-		for (int j = 0; j < ROW; ++j)
-		{
-			//if the board is 0 that means that it is not a fix number
-			if (mutation[j] == 0)
-			{
-				//this is to choose a number that is not in the row
-				int x = rand() % 9;
-				//this is where we keep finding a number that hasnt been used
-				while (number[x] == 0)
+				mutation[j] = first[row][j];
+				if (first[row][j] != 0)
 				{
-					x = rand() % 9;
+					number[first[row][j] - 1] = 0;
 				}
-				//this is to add the number into the row
-				mutation[j] = number[x];
-				//this is showing that we used a number
-				number[x] = 0;
 			}
-		}
-		for (int j = 0; j < COL; ++j)
-		{
-			child_state[row][j] = mutation[j];
+			for (int j = 0; j < ROW; ++j)
+			{
+				//if the board is 0 that means that it is not a fix number
+				if (mutation[j] == 0)
+				{
+					//this is to choose a number that is not in the row
+					int x = rand() % 9;
+					//this is where we keep finding a number that hasnt been used
+					while (number[x] == 0)
+					{
+						x = rand() % 9;
+					}
+					//this is to add the number into the row
+					mutation[j] = number[x];
+					//this is showing that we used a number
+					number[x] = 0;
+				}
+			}
+			for (int j = 0; j < COL; ++j)
+			{
+				child_state[row][j] = mutation[j];
+			}
 		}
 	}
 }
@@ -125,7 +128,6 @@ void Population::breed(const int parent1, const int parent2)
 	Chromosome *temp2 = new Chromosome(child2);
 	population.push_back(temp2);
 }
-
 bool compare(const Chromosome *arg1, const Chromosome *arg2)
 {
 	return arg1->fitness_score > arg2->fitness_score;
@@ -135,6 +137,7 @@ int Population::solve(const int initial[ROW][COL])
 {
 	int parent1, parent2;
 	int pop_size;
+	
 	//bool flag;
 
 	int gen_count = 1;
@@ -148,7 +151,7 @@ int Population::solve(const int initial[ROW][COL])
 		//flag = checkSolved();
 
 		//  Removes the least fittest 50% from the popultion
-		for (int i = 0; i < POP_SIZE / 2; ++i)
+		for (int i = 0; i < POP_SIZE / 5; ++i)
 		{
 			population.pop_back();
 		}
@@ -165,14 +168,14 @@ int Population::solve(const int initial[ROW][COL])
 			//cout << "parent 2: " << parent2 << endl;
 			breed(parent1, parent2);
 			pop_size = population.size();
-		
+
 
 		} while (pop_size < POP_SIZE);
 
 		cout << "Average Fitness: " << averageFitness() << endl;
 		++gen_count;
 
-		//}while(gen_count < GEN_SIZE && flag == false);
+		//while(gen_count < GEN_SIZE && flag == false);
 	} while (gen_count < GEN_SIZE);
 
 	generations = gen_count;
