@@ -139,7 +139,6 @@ int Population::solve(const int initial[ROW][COL])
 {
 	int parent1, parent2;
 	int pop_size;
-	//bool flag;
 
 	int gen_count = 1;
 	do
@@ -147,9 +146,6 @@ int Population::solve(const int initial[ROW][COL])
 
 		//  Sorting population from highest to lowest fitness score
 		sort(population.begin(), population.end(), compare);
-
-		//  Checks if the population is in a solved state (TBD)
-		//flag = checkSolved();
 
 		//  Removes the least fittest 50% from the popultion
 		for (int i = 0; i < POP_SIZE / 2; ++i)
@@ -163,12 +159,8 @@ int Population::solve(const int initial[ROW][COL])
 		do
 		{
 
-			//cout << "totalfitness: " << total << endl;
 			parent1 = chooseParent(total);
 			parent2 = chooseParent(total);
-			//cout << "parent 1: " << parent1 << endl;
-			//cout << "parent 2: " << parent2 << endl;
-
 			breed(parent1, parent2);
 			pop_size = population.size();
 
@@ -177,22 +169,17 @@ int Population::solve(const int initial[ROW][COL])
         ++gen_count;
 		if (checkSolved() == true)
 		{
-			cout << "Found solution at generation: " << gen_count << endl;
-			abort();
+			cout << "Solution found at generation: " << gen_count << endl;
+			return 1;
 	    }
-		
 
-		//}while(gen_count < GEN_SIZE && flag == false);
 		if(gen_count % 10 == 0)
-	{
-		int x = averageFitness();
-		cout << "Generation: " << gen_count << endl;
-		cout << "Average population fitness: " << x << endl;
-	}
-	} while (gen_count < GEN_SIZE);
+    	{
+    		int x = averageFitness();
+    		cout << "Generation: " << gen_count << " | " <<  "Average population fitness: " << x << endl;
+    	}
 
-	
-	
+	} while (gen_count < GEN_SIZE);
 	
 	return 0;
 }
@@ -252,9 +239,9 @@ bool Population::checkSolved()
 	{
 		if (population[i]->fitness_score == 234)
 		{
-			cout << "Its solved" << endl;
-			cout << "The Fitness score: "<<population[i]->fitness_score << endl;
+			cout << "\nSolved Solution" << endl;
 			population[i]->printState();
+			cout << "\nFitness score: "<<population[i]->fitness_score << endl;
 			return true;
 		}
 	}

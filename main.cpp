@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
     }
     
     //  Test: Displays intial sudoku state
+    cout << "Initial Sudoku Configuration" << endl;
     for(int i = 0; i < ROW; ++i)
     {
         for(int j = 0; j < COL; ++j)
@@ -52,12 +53,18 @@ int main(int argc, char *argv[])
         }
         cout << endl;
     }
-    int i = 1;
+    cout << endl;
+
     while(true)
     {
-    Population* initial = new Population(initial_state);
-    initial->copy(initial_state);
-    initial->solve(initial_state);
+        int flag = 0;
+        Population* initial = new Population(initial_state);
+        initial->copy(initial_state);
+        flag = initial->solve(initial_state);
+        cout << endl;
+
+        if(flag)
+            break;
     }
 
     return 0;
