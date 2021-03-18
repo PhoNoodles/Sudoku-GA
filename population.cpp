@@ -1,8 +1,8 @@
 #include "population.h"
 #include "chromosome.h"
 
-const int POP_SIZE = 100;
-const int GEN_SIZE = 1000;
+const int POP_SIZE = 200;
+const int GEN_SIZE = 100;
 
 Population::Population(const int initial_state[ROW][COL])
 {
@@ -26,7 +26,7 @@ void Population::mutatePct(int child_state[ROW][COL])
 	int row = rand() % 9;
 	int mutation[9];
 	int pct = rand() % 100;
-	if (pct < 70)
+	if (pct < 50)
 	{
 		int number[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 		for (int j = 0; j < COL; ++j)
@@ -67,11 +67,11 @@ bool Population::randomDeath(const int parent1, const int parent2)
 {
 	int pct = rand() % 100;
 	int size = population.size();
-	if(parent1==(size-1)||parent2==(size-1))
+	if (parent1 == (size - 1) || parent2 == (size - 1))
 		return false;
-	if(pct < 5)
+	if (pct < 5)
 	{
-		if(population[parent1]&&population[parent2])
+		if (population[parent1] && population[parent2])
 		{
 			population.erase(population.begin() + parent1);
 			population.erase(population.begin() + parent2);
@@ -85,14 +85,14 @@ bool Population::randomDeath(const int parent1, const int parent2)
 void Population::breed(const int parent1, const int parent2)
 {
 	//  While having breeding, the parents have a chance of dying
-	if(randomDeath(parent1, parent2))
+	if (randomDeath(parent1, parent2))
 		return;
 
 	int child1[ROW][COL];
 	int child2[ROW][COL];
 
 	//  Random cross section index [1-7]
-	int cross = rand() % 8+1;//7 + 1;
+	int cross = rand() % 9; //7 + 1;
 	//  Determines which rows will be undergo crossover
 	for (int i = 0; i < ROW; ++i)
 	{
@@ -116,8 +116,12 @@ void Population::breed(const int parent1, const int parent2)
 	}
 
 	//  There a probability that the childrens gene will mutate randomly
-	mutatePct(child1);
-	mutatePct(child2);
+	int pct = rand() % 100;
+	if (pct < 60)
+		mutatePct(child1);
+	pct = rand() % 100;
+	if (pct < 40)
+		mutatePct(child2);
 
 	Chromosome *temp1 = new Chromosome(child1);
 	population.push_back(temp1);
@@ -155,36 +159,48 @@ int Population::solve(const int initial[ROW][COL])
 
 		//  Choose parents and breeds, repopulating the population until the
 		//  population is back to its original size
+		int total = totalFit();
 		do
 		{
-			int total = totalFit();
+
 			//cout << "totalfitness: " << total << endl;
 			parent1 = chooseParent(total);
 			parent2 = chooseParent(total);
 			//cout << "parent 1: " << parent1 << endl;
 			//cout << "parent 2: " << parent2 << endl;
+
 			breed(parent1, parent2);
 			pop_size = population.size();
-		
 
 		} while (pop_size < POP_SIZE);
 
-		cout << "Average Fitness: " << averageFitness() << endl;
-		++gen_count;
+        ++gen_count;
+		if (checkSolved() == true)
+		{
+			cout << "Found solution at generation: " << gen_count << endl;
+			abort();
+	    }
+		
 
 		//}while(gen_count < GEN_SIZE && flag == false);
+		if(gen_count % 10 == 0)
+	{
+		int x = averageFitness();
+		cout << "Generation: " << gen_count << endl;
+		cout << "Average population fitness: " << x << endl;
+	}
 	} while (gen_count < GEN_SIZE);
 
-	generations = gen_count;
-	cout << generations << endl;
+	
+	
+	
 	return 0;
 }
 
 int Population::totalFit()
 {
 	int total = 0;
-	int size = population.size();
-	for (int i = 0; i < size; ++i)
+	for (int i = 0; i < POP_SIZE / 2; ++i)
 	{
 		total += population[i]->fitness_score;
 	}
@@ -195,10 +211,9 @@ int Population::averageFitness()
 {
 	int total = 0;
 	int size = population.size();
-	for(int i = 0; i< size; ++i)
+	for (int i = 0; i < size; ++i)
 		total += population[i]->fitness_score;
-	return (total/size);
-
+	return (total / size);
 }
 
 int Population::chooseParent(int total)
@@ -230,4 +245,18 @@ void Population::copy(const int state[ROW][COL])
 			first[i][j] = state[i][j];
 		}
 	}
-} 
+}
+bool Population::checkSolved()
+{
+	for (int i = 0; i < POP_SIZE; ++i)
+	{
+		if (population[i]->fitness_score == 234)
+		{
+			cout << "Its solved" << endl;
+			cout << "The Fitness score: "<<population[i]->fitness_score << endl;
+			population[i]->printState();
+			return true;
+		}
+	}
+	return false;
+}

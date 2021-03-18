@@ -52,10 +52,13 @@ int main(int argc, char *argv[])
         }
         cout << endl;
     }
-
+    int i = 1;
+    while(true)
+    {
     Population* initial = new Population(initial_state);
     initial->copy(initial_state);
     initial->solve(initial_state);
+    }
 
     return 0;
 }
