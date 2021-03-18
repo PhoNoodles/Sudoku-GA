@@ -73,7 +73,7 @@ void Chromosome::fillBoard()
 int Chromosome::fitnessEval()
 {
 	int cdouble = 234;
-for (int j = 0; j < 9; j++)
+    for (int j = 0; j < 9; j++)
     {
         int number[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         for (int i = 0; i < 9; ++i)
@@ -83,8 +83,6 @@ for (int j = 0; j < 9; j++)
             {
                 number[board[i][j] - 1] = 0;
             }
-
-            
         }
         for (int y = 0; y < 9; ++y)
             {
@@ -116,8 +114,9 @@ for (int j = 0; j < 9; j++)
             }
         }
     }
-//     //this is top middle
-   for (int i = 0; i < 3; ++i)
+
+    //this is top middle
+    for (int i = 0; i < 3; ++i)
     {
         for (int k = 3; k < 6; ++k)
         {
@@ -137,8 +136,9 @@ for (int j = 0; j < 9; j++)
             }
         }
     }
-// //     //this is top right
-for (int i = 0; i < 3; ++i)
+
+    //this is top right
+    for (int i = 0; i < 3; ++i)
     {
         for (int k = 6; k < 9; ++k)
         {
@@ -159,8 +159,8 @@ for (int i = 0; i < 3; ++i)
         }
     }
 
-// //     //this is mid left
-for (int i = 3; i < 6; ++i)
+    //this is mid left
+    for (int i = 3; i < 6; ++i)
     {
         for (int k = 0; k < 3; ++k)
         {
@@ -181,8 +181,8 @@ for (int i = 3; i < 6; ++i)
         }
     }
 
-// //     //this is middle middle
-for (int i = 3; i < 6; ++i)
+    //this is middle middle
+    for (int i = 3; i < 6; ++i)
     {
         for (int k = 3; k < 6; ++k)
         {
@@ -203,8 +203,8 @@ for (int i = 3; i < 6; ++i)
         }
     }
 
-// //     //this is middle right
-for (int i = 3; i < 6; ++i)
+    //this is middle right
+    for (int i = 3; i < 6; ++i)
     {
         for (int k = 6; k < 9; ++k)
         {
@@ -225,8 +225,8 @@ for (int i = 3; i < 6; ++i)
         }
     }
 
-// //     //this is bot left
-for (int i = 6; i < 9; ++i)
+    //this is bot left
+    for (int i = 6; i < 9; ++i)
     {
         for (int k = 0; k < 3; ++k)
         {
@@ -247,8 +247,8 @@ for (int i = 6; i < 9; ++i)
         }
     }
 
-// //     //this is bot middle
-for (int i = 6; i < 9; ++i)
+    //this is bot middle
+    for (int i = 6; i < 9; ++i)
     {
         for (int k = 3; k < 6; ++k)
         {
@@ -269,8 +269,8 @@ for (int i = 6; i < 9; ++i)
         }
     }
 
-// //     //this is bot right
-for (int i = 6; i < 9; ++i)
+    //this is bot right
+    for (int i = 6; i < 9; ++i)
     {
         for (int k = 6; k < 9; ++k)
         {
@@ -291,82 +291,7 @@ for (int i = 6; i < 9; ++i)
         }
     }
 
-    //cout << cdouble << endl;
 	return cdouble;
-/*
-    cout << "start of fitnessEval" << endl;
-	int fitness=216;
-	int row [9] = {0,0,0,0,0,0,0,0,0};
-	int column [9] = {0,0,0,0,0,0,0,0,0};
-	int subGrid [9] = {0,0,0,0,0,0,0,0,0};
-
-	//Loop nine times 
-	for(int i=0;i<9;++i)
-	{
-		//original number	
-		for(int j=0;j<8;++j)
-		{
-			//check for duplicate in row
-			for(int r=1;r<9;++r)
-			{
-				if(checkedAlready(row,board[i][j]))
-					break;
-				if(board[i][j]==board[i][r])
-					--fitness;
-			}
-
-			//check for duplicate in columns
-			for(int c=1;c<9;++c)
-			{
-				if(checkedAlready(column,board[j][i]))
-					break;
-				if(board[j][i]==board[c][i])
-					--fitness;
-			}
-
-		}
-		//reset the already checked already to all zeros
-		for(int p=0;p<9;++p)
-		{
-			row[p]=0;
-			column[p]=0;
-		}
-	}
-
-	for(int r=0;r<7;r+=3)
-	{
-		for(int c=0;c<7;c+=3)
-		{
-			for(int c1=0;c1<3;++c1)
-			{
-
-				for(int c2=1;c2<3;c2++)
-				{
-					if(checkedAlready(subGrid,board[r][c1]))
-						break;
-					if(board[r][c+c1]==board[r][c+c2])
-						--fitness;
-				}
-				if(board[r][c+c1]==board[r+1][c+c1])
-					--fitness;
-				if(board[r][c+c1]==board[r+2][c+c1])
-					--fitness;
-
-			}
-			for(int p;p<9;++p)
-				subGrid[p]=0;
-
-		}
-		for(int p;p<9;++p)
-			subGrid[p]=0;
-
-	}
-
-    cout << "end of fitness eval" << endl;
-	return fitness;
-*/
-
-
 }
 
 int Chromosome::checkedAlready(int array [],int num)
